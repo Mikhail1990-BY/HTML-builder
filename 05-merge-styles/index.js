@@ -11,7 +11,7 @@ fs.readdir(stylesFolder, (err, dirFilesList) => {
   } 
   else {
     dirFilesList.forEach(file => {
-      if(path.extname(file) !== '.txt') {
+      if(path.extname(file) == '.css') {
         fs.createReadStream(`${stylesFolder}/${file}`, 'utf-8').pipe(bundleWrite);
       }
     });

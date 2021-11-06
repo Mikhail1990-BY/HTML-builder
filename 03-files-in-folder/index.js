@@ -16,7 +16,7 @@ fs.readdir('./03-files-in-folder/secret-folder', {withFileTypes: true}, (err, di
           }
           else {
             fileSize = stats.size;
-            console.log(`${path.parse(file.name).name} - ${path.extname(file.name)} - ${Math.floor(fileSize / 1000)}kb`);
+            console.log(`${path.parse(file.name).name} - ${path.extname(file.name).slice(1)} - ${(fileSize / 1000).toFixed(3)}kb`);
           }
         });
       }
