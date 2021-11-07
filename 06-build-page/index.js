@@ -13,54 +13,6 @@ fs.readFile(templatePath, 'utf8', (err, data) => {
   template = data;
 });
 
-// async function deleteDir(dir) {
-//   try {
-//     await fsp.rm(dir, {recursive: true});
-//     console.log('projectDist deleted');
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-// deleteDir(projectDist);
-
-
-// fs.stat(projectDist, (err, stats) => {
-//   if(err) {
-//     console.log(err);
-//   } else if(stats.isDirectory()) {
-//     fsp.readdir(projectDist, (err, dirFilesList) => { // delete all new folder
-//       if(err) {
-//         console.log(err);
-//       } 
-//       else {
-//         dirFilesList.forEach(file => {
-//           fsp.rm(`${projectDist}/${file}`, { recursive: true }, err => {
-//             if(err) {
-//               console.log(err);
-//             }
-//           });
-//         });
-//       }
-//     });
-//   }
-// });
-
-// fsp.readdir(projectDist, (err, dirFilesList) => { // delete all new folder
-//   if(err) {
-//     console.log(err);
-//   } 
-//   else {
-//     dirFilesList.forEach(file => {
-//       fsp.rm(`${projectDist}/${file}`, { recursive: true }, err => {
-//         if(err) {
-//           console.log(err);
-//         }
-//       });
-//     });
-//   }
-// });
-
-
 fs.mkdir(projectDist, {recursive: true}, err => { // create new folder
   if(err) {
     console.log(err);
@@ -68,7 +20,7 @@ fs.mkdir(projectDist, {recursive: true}, err => { // create new folder
 });
 
 
-fsp.readdir(projectDist, (err, dirFilesList) => { // delete all new folder
+fsp.readdir(projectDist, (err, dirFilesList) => { // delete all in new folder
   if(err) {
     console.log(err);
   } 
@@ -84,7 +36,7 @@ fsp.readdir(projectDist, (err, dirFilesList) => { // delete all new folder
 });
 
 
-fs.readdir(components, (err, dirFilesList) => { // copy all files to the new folder
+fs.readdir(components, (err, dirFilesList) => { // substitute tags in index.html with content from components
   if(err) {
     console.log(err);
   } 
@@ -106,12 +58,6 @@ fs.readdir(components, (err, dirFilesList) => { // copy all files to the new fol
         } catch (err) {
           console.log(err);
         }
-
-        //   fsp.writeFile(`${projectDist}/index.html`, template, err => {
-        //   if(err) {
-        //     console.log(err);
-        //   } 
-        // });
       });
     });
   }
@@ -215,7 +161,7 @@ fs.readdir(svgInit, (err, dirFilesList) => { // copy all files to the new folder
   }
 });
 
-fs.createReadStream(bundle, 'utf8', (err, data) => {
+fs.createReadStream(bundle, 'utf8', (err, data) => { // fix path to assets files
   if(err) {
     console.log(err);
   }
